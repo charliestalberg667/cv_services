@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import { LanguageProvider } from "@/components/language-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
+import Script from "next/script";
 import {StrictMode} from "react";
 
 // Load fonts
