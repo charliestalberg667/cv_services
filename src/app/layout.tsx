@@ -1,15 +1,14 @@
 import "./globals.css";
-import { Inter, Montserrat_Alternates } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import Navbar from "@/components/navbar";
 import { LanguageProvider } from "@/components/language-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
-import Script from "next/script";
 import {StrictMode} from "react";
 
 // Load fonts
 const inter = Inter({ subsets: ["latin"] });
-const montserratAlternates = Montserrat_Alternates({
+const montserratAlternates = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-montserrat-alternates",
