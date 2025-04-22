@@ -9,11 +9,11 @@ export default function About() {
 
   const content = {
     fr: {
-      title: "À Propos de SolarInstall",
+      title: "À Propos de cv services",
       description: "Votre partenaire de confiance pour l'énergie solaire",
       mission: "Notre mission",
       missionText:
-        "Chez SolarInstall, notre mission est de rendre l'énergie solaire accessible à tous. Nous nous engageons à fournir des solutions d'énergie solaire de haute qualité et durables pour les particuliers et les entreprises.",
+        "Chez cv services, notre mission est de rendre l'énergie solaire accessible à tous. Nous nous engageons à fournir des solutions d'énergie solaire de haute qualité et durables pour les particuliers et les entreprises.",
       experience: "Notre expérience",
       experienceText:
         "Avec plus de 10 ans d'expérience dans le domaine de l'énergie solaire, notre équipe d'experts qualifiés a installé avec succès des milliers de systèmes solaires à travers le pays.",
@@ -48,7 +48,7 @@ export default function About() {
         },
       ],
       stats: {
-        title: "SolarInstall en chiffres",
+        title: "cv services en chiffres",
         items: [
           { value: "10k+", label: "Installations réalisées" },
           { value: "50MW+", label: "Capacité totale installée" },
@@ -62,11 +62,11 @@ export default function About() {
       teamCaption: "Notre équipe dévouée",
     },
     nl: {
-      title: "Over SolarInstall",
+      title: "Over cv services",
       description: "Uw betrouwbare partner voor zonne-energie",
       mission: "Onze missie",
       missionText:
-        "Bij SolarInstall is onze missie om zonne-energie toegankelijk te maken voor iedereen. We zetten ons in om hoogwaardige en duurzame zonne-energieoplossingen te leveren voor particulieren en bedrijven.",
+        "Bij cv services is onze missie om zonne-energie toegankelijk te maken voor iedereen. We zetten ons in om hoogwaardige en duurzame zonne-energieoplossingen te leveren voor particulieren en bedrijven.",
       experience: "Onze ervaring",
       experienceText:
         "Met meer dan 10 jaar ervaring in de zonne-energiesector heeft ons team van gekwalificeerde experts met succes duizenden zonne-energiesystemen door het hele land geïnstalleerd.",
@@ -101,7 +101,7 @@ export default function About() {
         },
       ],
       stats: {
-        title: "SolarInstall in cijfers",
+        title: "cv services in cijfers",
         items: [
           { value: "10k+", label: "Voltooide installaties" },
           { value: "50MW+", label: "Totale geïnstalleerde capaciteit" },
@@ -144,21 +144,21 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <div className="flex items-center mb-4">
-              <Sun className="w-6 h-6 mr-2 text-yellow-500" />
+              <Sun className="w-6 h-6 mr-2 text-[#17158A]" />
               <h3 className="text-xl font-semibold">{mission}</h3>
             </div>
             <p>{missionText}</p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <div className="flex items-center mb-4">
-              <Users className="w-6 h-6 mr-2 text-yellow-500" />
+              <Users className="w-6 h-6 mr-2 text-[#17158A]" />
               <h3 className="text-xl font-semibold">{experience}</h3>
             </div>
             <p>{experienceText}</p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <div className="flex items-center mb-4">
-              <Award className="w-6 h-6 mr-2 text-yellow-500" />
+              <Award className="w-6 h-6 mr-2 text-[#17158A]" />
               <h3 className="text-xl font-semibold">{commitment}</h3>
             </div>
             <p>{commitmentText}</p>
@@ -172,7 +172,7 @@ export default function About() {
               key={index}
               className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md text-center"
             >
-              <item.icon className="w-12 h-12 mx-auto mb-4 text-yellow-500" />
+              <item.icon className="w-12 h-12 mx-auto mb-4 text-[#17158A]" />
               <h3 className="text-xl font-semibold">{item.title}</h3>
               <p>{item.description}</p>
             </div>
@@ -186,7 +186,7 @@ export default function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.items.map((item, index) => (
               <div key={index} className="text-center">
-                <p className="text-3xl font-bold text-yellow-500">
+                <p className="text-3xl font-bold text-[#17158A]">
                   {item.value}
                 </p>
                 <p className="text-sm text-muted-foreground">{item.label}</p>
@@ -198,7 +198,7 @@ export default function About() {
         <div className="relative h-96 rounded-lg overflow-hidden">
           <Image
             src="/images/solar-team.jpg"
-            alt="SolarInstall Team"
+            alt="cv services Team"
             layout="fill"
             objectFit="cover"
             className="brightness-50"

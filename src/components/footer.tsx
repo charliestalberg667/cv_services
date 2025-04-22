@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <>
       <BrandsScroll />
-      <footer className="py-6 bg-[#ededed] text-[#14281D] p-6">
+      <footer className="py-6 bg-[#ffffff] text-[#17158A] p-6">
         <div className="container mx-auto text-center px-4">
           <nav className="flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-8">
             <a href="/conditions" className="hover:underline" aria-label="Conditions générales de vente">

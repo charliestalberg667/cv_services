@@ -20,11 +20,6 @@ const Navbar = () => {
     { href: "/contact", label: "Contact" },
   ];
 
-  const BuisnessCheck = [
-    { href: "/", label: language === "fr" ? "Particulier" : "Particulieren" },
-    { href: "/buisness", label: language === "fr" ? "Entreprise" : "Zakelijk" },
-  ];
-
   const content = {
     fr: {
       exploreShowroom: "Explorer le showroom",
@@ -46,29 +41,10 @@ const Navbar = () => {
     setClickCount(clickCount + 1);
   };
 
-  const [activeItem, setActiveItem] = useState(BuisnessCheck[0].href);
 
   return (
     <nav className="">
     <div className="md:hidden w-full flex ">
-    
-  {BuisnessCheck.map((item) => (
-    <Link
-      key={item.href}
-      href={item.href}
-      className={`flex-1 flex items-center justify-center text-center pb-1 pt-1 text-sm font-base h-full ${
-        activeItem === item.href
-          ? "bg-[#337a3b] text-white" // Active state styles
-          : "text-black hover:bg-gray-200 dark:hover:bg-gray-700" // Default state styles
-      }`}
-      onClick={() => {
-        setActiveItem(item.href);
-        toggleMenu();
-      }}
-    >
-      {item.label}
-    </Link>
-  ))}
       </div>
       <div className="flex items-center justify-between h-16 mx-7 gap-8 my-4 mt-0 md:mt-4">
         <div className="flex items-center gap-4">
@@ -90,7 +66,7 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="navEllement text-black hover:bg-[#D7EEDA] px-3 py-2 rounded-xl text-base font-semibold"
+                  className="navEllement text-black hover:bg-[#cdccff] px-3 py-2 rounded-xl text-base font-semibold"
                 >
                   {item.label}
                 </Link>
@@ -100,25 +76,11 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center  ">
-            {BuisnessCheck.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-3 py-2 navEllement text-base font-semibold ${
-                  activeItem === item.href
-                    ? "bg-[#337a3b] text-white border-2 rounded-xl border-[#3c7740]" // Active state styles
-                    : "text-black " // Default state styles
-                }`}
-                onClick={() => setActiveItem(item.href)}
-              >
-                {item.label}
-              </Link>
-            ))}
           </div>
           <Link href="https://www.google.be/maps/place/SolarStock/@50.780509,4.2721875,46m/data=!3m1!1e3!4m6!3m5!1s0x47c3c723c65cb223:0x53cd5c047a55f3a6!8m2!3d50.7806139!4d4.2723163!16s%2Fg%2F11kjjtdc83?entry=ttu&g_ep=EgoyMDI1MDIxOS4xIKXMDSoASAFQAw%3D%3D">
             <button
               type="submit"
-              className="hidden md:flex border-2 border-[#3c7740] p-4 justify-center gap-2 items-center text-base bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-[0.55rem] before:bg-[#3c7740] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 pl-3 pr-1 py-1 overflow-hidden border-spacing-1 rounded-xl group"
+              className="hidden md:flex border-2 border-[#17158A] p-4 justify-center gap-2 items-center text-base bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-[0.55rem] before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 pl-3 pr-1 py-1 overflow-hidden border-spacing-1 rounded-xl group"
             >
               {exploreShowroom}
               <svg

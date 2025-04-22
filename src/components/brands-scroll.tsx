@@ -38,7 +38,7 @@ export function BrandsScroll() {
   if (!mounted) return null;
 
   return (
-    <div className="py-3 bg-[#ededed] ">
+    <div className="py-3 bg-[#ffffff] ">
       <Marquee gradient={false} speed={30}>
         {brands.map((brand, index) => (
           <div
@@ -48,8 +48,8 @@ export function BrandsScroll() {
             <span
               className={`text-sm ${
                 index % 2 === 0
-                  ? "text-[#14281D] font-semibold"
-                  : "text-[#14281D] font-light"
+                  ? "text-[#17158A] font-semibold"
+                  : "text-[#17158A] font-light"
               }`}
             >
               {brand}

@@ -1,3 +1,4 @@
+
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -8,16 +9,24 @@ interface Content {
   title: string;
   subtitle: string;
   cards: Card[];
+  cta: CTA;
 }
 
 interface Card {
   title: string;
+  subtitle?: string;
   description: string;
-  shortDescription: string;
-  youtube?: string;
+  shortDescription?: string;
   image?: string;
   video?: string;
   gif?: string;
+  youtube?: string;
+}
+
+interface CTA {
+  title: string;
+  description: string;
+  button: string;
 }
 
 function ResidentialDesktop({ content }: { content: Content }) {
@@ -25,217 +34,230 @@ function ResidentialDesktop({ content }: { content: Content }) {
 
   return (
     <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-2 text-[#355834]">{title}</h1>
-            <p className="text-xl text-[#43964c]">{subtitle}</p>
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-2 text-[#17158A]">{title}</h1>
+        <p className="text-xl text-[#5350fa]">{subtitle}</p>
+      </div>
+
+      <div className="grid gap-8 pb-5">
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className={`grid md:grid-cols-2 items-center shadow-[0_5px_12px_rgba(0,_0,_0,_0.05)] bg-white  rounded-lg ${
+              index % 2 === 0 ? "md:grid-flow-col" : "md:grid-flow-col-dense"
+            }`}
+          >
+            {index % 2 === 0 ? (
+              <>
+                <div className="relative h-[400px] m-4 rounded-lg overflow-hidden">
+                  {card.youtube ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${card.youtube}`}
+                      title={card.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    ></iframe>
+                  ) : card.video ? (
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      className="absolute inset-0 w-full h-full object-cover"
+                    >
+                      <source src={card.video} type="video/mp4" />
+                    </video>
+                  ) : card.gif ? (
+                    <Image
+                      src={card.gif}
+                      alt={card.title}
+                      fill
+                      className="object-cover"
+                      priority={index === 0}
+                      unoptimized
+                    />
+                  ) : (
+                    <Image
+                      src={card.image || "/public/favicon.png"}
+                      alt={card.title}
+                      fill
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                  )}
+                </div>
+                <div className="flex flex-col h-full justify-between md:px-8 py-8 ">
+                  <div>
+                    <h2 className="text-2xl font-bold text-center text-[#17158A]">
+                      {card.title}
+                    </h2>
+                    {card.subtitle && (
+                      <h3 className="text-xl text-center text-[#43964c]">
+                        {card.subtitle}
+                      </h3>
+                    )}
+                  </div>
+                  <p className="text-gray-800 leading-relaxed text-justify">
+                    {card.description}
+                  </p>
+                  <div></div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col h-full justify-between md:px-8 py-8">
+                  <div>
+                    <h2 className="text-2xl font-bold text-center text-[#17158A]">
+                      {card.title}
+                    </h2>
+                    {card.subtitle && (
+                      <h3 className="text-xl text-center text-[#43964c]">
+                        {card.subtitle}
+                      </h3>
+                    )}
+                  </div>
+                  <p className="text-gray-800 leading-relaxed text-justify">
+                    {card.description}
+                  </p>
+                  <div></div>
+                </div>
+                <div className="relative h-[400px] m-4 rounded-lg overflow-hidden">
+                  {card.youtube ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${card.youtube}`}
+                      title={card.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    ></iframe>
+                  ) : card.video ? (
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      className="absolute inset-0 w-full h-full object-cover"
+                    >
+                      <source src={card.video} type="video/mp4" />
+                    </video>
+                  ) : card.gif ? (
+                    <Image
+                      src={card.gif}
+                      alt={card.title}
+                      fill
+                      className="object-cover"
+                      priority={index === 0}
+                      unoptimized
+                    />
+                  ) : (
+                    <Image
+                      src={card.image || "/public/favicon.png"}
+                      alt={card.title}
+                      fill
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                  )}
+                </div>
+              </>
+            )}
           </div>
-    
-          <div className="grid gap-8 pb-5">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                className={`grid md:grid-cols-2 items-center shadow-[0_5px_12px_rgba(0,_0,_0,_0.05)] bg-white rounded-lg ${
-                  index % 2 === 0 ? "md:grid-flow-col" : "md:grid-flow-col-dense"
-                }`}
-              >
-                {index % 2 === 0 ? (
-                  <>
-                    <div className="relative h-[400px] m-4 rounded-lg overflow-hidden">
-                      {card.youtube ? (
-                        <iframe
-                          width="100%"
-                          height="100%"
-                          src={`https://www.youtube.com/embed/${card.youtube}`}
-                          title={card.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="absolute inset-0 w-full h-full"
-                        ></iframe>
-                      ) : card.video ? (
-                        <video
-                          autoPlay
-                          loop
-                          muted
-                          className="absolute inset-0 w-full h-full object-cover"
-                        >
-                          <source src={card.video} type="video/mp4" />
-                        </video>
-                      ) : card.gif ? (
-                        <Image
-                          src={card.gif}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                          unoptimized
-                        />
-                      ) : (
-                        <Image
-                          src={card.image || "/public/favicon.png"}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                        />
-                      )}
-                    </div>
-                    <div className="flex flex-col h-full justify-between md:px-8 py-8 ">
-                      <div>
-                        <h2 className="text-2xl font-bold text-center text-[#355834]">
-                          {card.title}
-                        </h2>
-                      </div>
-                      <p className="text-gray-800 leading-relaxed text-justify">
-                        {card.description}
-                      </p>
-                      <div></div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex flex-col h-full justify-between md:px-8 py-8">
-                      <div>
-                        <h2 className="text-2xl font-bold text-center text-[#355834]">
-                          {card.title}
-                        </h2>
-                      </div>
-                      <p className="text-gray-800 leading-relaxed text-justify">
-                        {card.description}
-                      </p>
-                      <div></div>
-                    </div>
-                    <div className="relative h-[400px] w-[1000] m-4 rounded-lg overflow-hidden">
-                      {card.youtube ? (
-                        <iframe
-                          width="100%"
-                          height="100%"
-                          src={`https://www.youtube.com/embed/${card.youtube}`}
-                          title={card.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="absolute inset-0 w-full h-full"
-                        ></iframe>
-                      ) : card.video ? (
-                        <video
-                          autoPlay
-                          loop
-                          muted
-                          className="absolute inset-0 w-full h-full object-cover"
-                        >
-                          <source src={card.video} type="video/mp4" />
-                        </video>
-                      ) : card.gif ? (
-                        <Image
-                          src={card.gif}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                          unoptimized
-                        />
-                      ) : (
-                        <Image
-                          src={card.image || "/public/favicon.png"}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                        />
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
-            <PowerCTA />
-          </div>
-        </div>
+        ))}
+        <PowerCTA />
+      </div>
+    </div>
   );
 }
 
-const ResidentialMobile = ({ content }: { content: Content }) => {
+function ResidentialMobile({ content }: { content: Content }) {
   const { title, subtitle, cards } = content;
 
   return (
     <div>
-          <div id="content-section" className="container mx-auto px-4">
-            <div className="text-center mb-7">
-              <h1 className="text-2xl font-bold text-[#355834]">{title}</h1>
-              <p className="text-sm text-[#43964c]">{subtitle}</p>
-            </div>
-    
-            <div className="grid gap-8 pb-5">
-              {cards.map((card, index) => (
-                <div key={index} className="grid gap-4 items-center shadow-[0_10px_25px_rgba(0,_0,_0,_0.1)] bg-white rounded-lg">
-                  <div className="relative h-[220px] rounded-lg overflow-hidden">
-                    {card.youtube ? (
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={`https://www.youtube.com/embed/${card.youtube}`}
-                        title={card.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="absolute inset-0 w-full h-full"
-                      ></iframe>
-                    ) : card.video ? (
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 w-full h-full object-cover"
-                      >
-                        <source src={card.video} type="video/mp4" />
-                      </video>
-                    ) : card.gif ? (
-                      <>
-                        <Image
-                          src={card.gif}
-                          alt={card.title}
-                          layout="fill"
-                          className="object-cover"
-                          priority={index === 0}
-                          unoptimized
-                        />
-                        <h2 className="text-xl font-bold text-[#355834] text-center">
-                          {card.title}
-                        </h2>
-                      </>
-                    ) : (
-                      <>
-                        <Image
-                          src={card.image || "/public/favicon.png"}
-                          alt={card.title}
-                          layout="fill"
-                          className="object-cover"
-                          priority={index === 0}
-                        />
-                      </>
-                    )}
-                  </div>
-                  <div className="flex flex-col h-full justify-between ">
-                    <h2 className="text-xl m-4 font-bold text-center text-[#355834]">
+      <div id="content-section" className="container mx-auto px-4">
+        <div className="text-center mb-7">
+          <h1 className="text-2xl font-bold text-[#17158A]">{title}</h1>
+          <p className="text-sm text-[#43964c]">{subtitle}</p>
+        </div>
+
+        <div className="grid gap-8 pb-5">
+          {cards.map((card, index) => (
+            <div key={index} className="grid gap-4 items-center shadow-[0_10px_25px_rgba(0,_0,_0,_0.1)] bg-white rounded-lg">
+              <div className="relative h-[220px] rounded-lg overflow-hidden">
+                {card.youtube ? (
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${card.youtube}`}
+                    title={card.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  ></iframe>
+                ) : card.video ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source src={card.video} type="video/mp4" />
+                  </video>
+                ) : card.gif ? (
+                  <>
+                    <Image
+                      src={card.gif}
+                      alt={card.title}
+                      layout="fill"
+                      className="object-cover"
+                      priority={index === 0}
+                      unoptimized
+                    />
+                    <h2 className="text-xl font-bold text-[#17158A] text-center">
                       {card.title}
                     </h2>
-                    <p className="text-gray-800 mx-4 text-center leading-relaxed">
-                      {card.shortDescription}
-                    </p>
-                    <div className="flex mt-4 justify-center">
-                      {/* Additional content could go here */}
-                    </div>
-                  </div>
+                  </>
+                ) : (
+                  <>
+                    <Image
+                      src={card.image || "/public/favicon.png"}
+                      alt={card.title}
+                      layout="fill"
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                    <h2 className="text-xl font-bold text-[#17158A] text-center">
+                      {card.title}
+                    </h2>
+                  </>
+                )}
+              </div>
+              <div className="flex flex-col h-full justify-between ">
+              <h2 className="text-xl my-4 font-bold text-[#17158A] text-center">
+                      {card.title}
+              </h2>
+                <p className="text-gray-800 mx-4 text-justify leading-relaxed">
+                  {card.shortDescription}
+                </p>
+                <div className="flex mt-4 justify-center">
+                  {/* Additional content could go here */}
                 </div>
-              ))}
-              <PowerCTAMobile />
+              </div>
             </div>
-          </div>
+          ))}
+          <PowerCTAMobile />
         </div>
+      </div>
+    </div>
   );
-};
+}
 
 export default function Residential() {
   const { language } = useLanguage();
@@ -268,12 +290,6 @@ export default function Residential() {
           video: "/images/videoonduleur.mp4"
         },
         {
-          title: "Solution de Stockage Avancée",
-          description: "Maximisez votre indépendance énergétique avec nos solutions de stockage de dernière génération. Nos batteries intelligentes stockent l'excédent d'énergie solaire que vous produisez pendant la journée et le redistribuent quand vous en avez le plus besoin, notamment en soirée ou pendant les jours nuageux. En combinant notre technologie de stockage avec des algorithmes avancés, votre système anticipe vos besoins énergétiques en fonction de vos habitudes de consommation et ajuste automatiquement l'utilisation de l'énergie stockée. Cela vous permet d'augmenter votre autonomie énergétique tout en réduisant vos factures d'électricité.",
-          shortDescription: "Nos batteries intelligentes stockent l'énergie excédentaire pour l'utiliser plus tard, optimisant l'autonomie et les économies selon vos besoins.",
-          gif: "/images/battery-animation.gif"
-        },
-        {
           title: "Mobilité Électrique Intelligente",
           description: "Passez à la mobilité durable avec notre solution de recharge intelligente pour véhicules électriques. Notre borne de recharge connectée s'ajuste automatiquement à la production d'énergie de vos panneaux solaires, vous permettant de recharger votre véhicule aux moments les plus avantageux en termes d'énergie disponible. Vous avez la possibilité de programmer vos sessions de recharge pour éviter les pics de consommation et optimiser les coûts. Notre solution est compatible avec tous les véhicules électriques et offre une recharge rapide et sécurisée, tout en vous permettant de suivre votre consommation énergétique et d'optimiser les coûts grâce à une interface utilisateur intuitive.",
           shortDescription: "Notre borne de recharge connectée s'ajuste à votre production solaire pour une recharge rapide, économique et compatible avec tous les véhicules électriques.",
@@ -301,12 +317,6 @@ export default function Residential() {
           description: "Met ons geavanceerde monitoring systeem heeft u volledige controle over uw zonne-installatie. Via onze app kunt u in real-time de zonne-energieproductie, het elektriciteitsverbruik en de gerealiseerde besparingen volgen. De app biedt gedetailleerde rapporten over de prestaties van uw systeem en helpt u bij het optimaliseren van uw verbruik door middel van kunstmatige intelligentie. U ontvangt gepersonaliseerde meldingen en kunt uw eigen verbruik instellen om maximale besparingen te realiseren, waardoor u zowel uw energieverbruik als de impact op het milieu kunt verbeteren.",
           shortDescription: "Volg in real-time uw energieproductie, verbruik en besparingen, en optimaliseer uw verbruik dankzij gepersonaliseerde meldingen en AI-algoritmes.",
           video: "/images/videoonduleur.mp4"
-        },
-        {
-          title: "Geavanceerde Opslagoplossing",
-          description: "Verhoog uw energieonafhankelijkheid met onze geavanceerde opslagoplossingen. Onze slimme batterijen slaan overtollige zonne-energie op die overdag wordt geproduceerd, zodat u deze later kunt gebruiken wanneer de zon niet schijnt. Het systeem past zich aan uw energiebehoeften aan en zorgt ervoor dat uw opgeslagen energie op de meest efficiënte manier wordt ingezet. Dit geeft u maximale autonomie en verlaagt tegelijkertijd uw energiekosten. Onze technologie zorgt ervoor dat uw systeem volledig geoptimaliseerd wordt voor uw specifieke verbruiksbehoeften, waardoor u kunt profiteren van aanzienlijke besparingen.",
-          shortDescription: "Onze slimme batterijen slaan overtollige zonne-energie op en optimaliseren het gebruik ervan voor maximale autonomie en besparingen.",
-          gif: "/images/battery-animation.gif"
         },
         {
           title: "Slimme Elektrische Mobiliteit",

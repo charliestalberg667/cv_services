@@ -62,9 +62,9 @@ function HomeDesktop({ content }: { content: Content }) {
   {valuesItem.map((item, index) => (
     <div
       key={index}
-      className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center transition-transform duration-300 ease-in-out hover:scale-110 hover:text-blue-500 hover:shadow-[0_0px_35px_rgba(0,_0,_0,_0.1)]"
+      className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center transition-transform hover:shadow-[0_0px_55px_rgba(0,_0,_100,_0.2)]"
     >
-      <item.icon className="w-12 h-12 mx-auto mb-4 text-[#47864b] hover:text-blue-500" /> {/* Render the icon */}
+      <item.icon className="w-12 h-12 mx-auto mb-4 text-[#17158A]" /> {/* Render the icon */}
       <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
       <p>{item.description}</p>
     </div>
@@ -98,7 +98,7 @@ function HomeDesktop({ content }: { content: Content }) {
                     </div>
                   </Link>
                   <div className="flex flex-col h-full justify-between md:px-4 py-8">
-                    <h2 className="text-3xl font-bold text-center text-[#355834]">
+                    <h2 className="text-3xl font-bold text-center text-[#17158A]">
                       {card.title}
                     </h2>
                     <p className="text-gray-700 leading-relaxed text-justify">
@@ -107,7 +107,7 @@ function HomeDesktop({ content }: { content: Content }) {
                     <Link href={card.link}>
                       <button
                         type="submit"
-                        className="border-2 border-[#3c7740] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#3c7740] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
+                        className="border-2 border-[#17158A] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
                       >
                         {cta}
                         <svg
@@ -127,7 +127,7 @@ function HomeDesktop({ content }: { content: Content }) {
               ) : (
                 <>
                   <div className="flex flex-col h-full justify-between md:px-4 py-8">
-                    <h2 className="text-3xl font-bold text-center text-[#355834]">
+                    <h2 className="text-3xl font-bold text-center text-[#17158A]">
                       {card.title}
                     </h2>
                     <p className="text-gray-700 leading-relaxed text-justify">
@@ -136,7 +136,7 @@ function HomeDesktop({ content }: { content: Content }) {
                     <Link href={card.link}>
                       <button
                         type="submit"
-                        className="border-2 border-[#3c7740] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#3c7740] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
+                        className="border-2 border-[#17158A] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
                       >
                         {cta}
                         <svg
@@ -209,7 +209,7 @@ function HomeMobile({ content }: { content: Content }) {
               key={index}
               className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center transition-transform duration-300 ease-in-out hover:scale-110 hover:text-blue-500 hover:shadow-[0_0px_35px_rgba(0,_0,_0,_0.1)]"
             >
-              <item.icon className="w-10 h-10 mx-auto mb-2 text-[#47864b] hover:text-blue-500" /> {/* Taille réduite des icônes */}
+              <item.icon className="w-10 h-10 mx-auto mb-2 text-[#17158A] hover:text-blue-500" /> {/* Taille réduite des icônes */}
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
               <p className="text-sm">{item.description}</p> {/* Texte plus petit */}
             </div>
@@ -234,7 +234,7 @@ function HomeMobile({ content }: { content: Content }) {
               </div>
             </Link>
             <div className="flex flex-col h-full gap-8 justify-between md:px-4 py-4">
-              <h2 className="text-3xl font-bold text-center text-[#355834]">
+              <h2 className="text-3xl font-bold text-center text-[#17158A]">
                 {card.title}
               </h2>
               <p className="text-gray-700 text-center leading-relaxed">
@@ -243,7 +243,7 @@ function HomeMobile({ content }: { content: Content }) {
               <Link href={card.link}>
                 <button
                   type="submit"
-                  className="border-2 border-[#3c7740] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#3c7740] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
+                  className="border-2 border-[#17158A] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
                 >
                   {cta}
                   <svg
@@ -281,7 +281,7 @@ export default function Home() {
   const content = {
     fr: {
       title: "Libérez la puissance du soleil",
-      intro: "Chez SolarInstall, nous rendons l’énergie solaire accessible à tous",
+      intro: "avec cv services, nous rendons l’énergie solaire accessible à tous",
       cards: [
         {
           title: "Solutions solaires pour votre domicile",
@@ -323,8 +323,8 @@ export default function Home() {
       cta: "En savoir plus",
     },
     nl: {
-      title: "Ontketen de kracht van de zon met SolarInstall",
-      intro: "Bij SolarInstall maken we zonne-energie toegankelijk voor iedereen",
+      title: "Ontketen de kracht van de zon met cv services",
+      intro: "met cv services maken we zonne-energie toegankelijk voor iedereen",
       cards: [
         {
           title: "Zonne-oplossingen voor thuis",
