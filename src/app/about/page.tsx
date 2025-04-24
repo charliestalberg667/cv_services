@@ -197,7 +197,7 @@ export default function About() {
 
         <div className="relative h-96 rounded-lg overflow-hidden">
           <Image
-            src="/images/solar-team.jpg"
+            src="/images/team.jpeg"
             alt="cv services Team"
             layout="fill"
             objectFit="cover"
