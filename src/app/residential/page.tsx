@@ -182,7 +182,7 @@ function ResidentialMobile({ content }: { content: Content }) {
       <div id="content-section" className="container mx-auto px-4">
         <div className="text-center mb-7">
           <h1 className="text-2xl font-bold text-[#17158A]">{title}</h1>
-          <p className="text-sm text-[#43964c]">{subtitle}</p>
+          <p className="text-sm text-[#5350fa]">{subtitle}</p>
         </div>
 
         <div className="grid gap-8 pb-5">
