@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import {
   Mail,
   Phone,
-  MapPin,
   Send,
   User,
   AtSign,
