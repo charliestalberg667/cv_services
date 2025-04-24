@@ -36,9 +36,8 @@ export default function Contact() {
       errorMessage: "Une erreur s'est produite. Veuillez réessayer.",
       contactInfo: {
         title: "Informations de contact",
-        email: "spl@solarstock.be",
-        phone: "+32 (0)2 241 08 00",
-        address: "Chaussée de Mons 458, 1600 Sint-Pieters-Leeuw, Belgique",
+        email: "info@cvservices.be",
+        phone: "0470 89 14 08",
       },
     },
     nl: {
@@ -53,9 +52,8 @@ export default function Contact() {
       errorMessage: "Er is een fout opgetreden. Probeer het opnieuw.",
       contactInfo: {
         title: "Contactinformatie",
-        email: "spl@solarstock.be",
-        phone: "+32 (0)2 241 08 00",
-        address: "Chaussée de Mons 458, 1600 Sint-Pieters-Leeuw, Belgique",
+        email: "info@cvservices.be",
+        phone: "0470 89 14 08",
       },
     },
   };
@@ -133,19 +131,6 @@ export default function Contact() {
                   className="text-gray-800 hover:underline"
                 >
                   {contactInfo.phone}
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-blue-600" />
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    contactInfo.address,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-800 hover:underline"
-                >
-                  {contactInfo.address}
                 </a>
               </div>
             </div>
