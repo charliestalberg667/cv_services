@@ -181,7 +181,7 @@ function HomeMobile({ content }: { content: Content }) {
 
   return (
     <div id="content-section" className="container mx-auto px-4">
-      <div className="grid gap-8 pb-5">
+      <div className="grid gap-32 pb-5">
         {/* First Image with Filter and Text */}
         <div className="relative h-[300px] rounded-lg overflow-hidden">
         <Image
@@ -196,29 +196,31 @@ function HomeMobile({ content }: { content: Content }) {
           {/* Overlay Filter */}
           <div className="absolute inset-0 bg-black bg-opacity-70"></div>
           {/* Text on Top */}
+          
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
             <h1 className="text-4xl mb-4">{title}</h1>
           </div>
         </div>
 
         {/* Values Section */}
-        <h2 className="text-3xl font-semibold text-center">{values}</h2>
+        <div>
+        <h2 className="text-3xl font-semibold text-center mb-6">{values}</h2>
         <div className="grid grid-cols-2 gap-4"> {/* Grille 2x2 */}
           {valuesItem.map((item, index) => (
             <div
               key={index}
-              className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center transition-transform duration-300 ease-in-out hover:scale-110 hover:text-blue-500 hover:shadow-[0_0px_35px_rgba(0,_0,_0,_0.1)]"
+              className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center"
             >
-              <item.icon className="w-10 h-10 mx-auto mb-2 text-[#17158A] hover:text-blue-500" /> {/* Taille réduite des icônes */}
+              <item.icon className="w-10 h-10 mx-auto mb-2 text-[#17158A]" /> {/* Taille réduite des icônes */}
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
               <p className="text-sm">{item.description}</p> {/* Texte plus petit */}
             </div>
           ))}
-        </div>
+        </div></div>
 
         {/* Cards Section */}
         {cards.map((card, index) => (
-          <div key={index} className="grid gap-4 items-center">
+          <div key={index} className="grid gap-4 items-center mb-16">
             <Link href={card.link}>
               <div className="relative h-[300px] rounded-lg overflow-hidden">
                 {card.image && (

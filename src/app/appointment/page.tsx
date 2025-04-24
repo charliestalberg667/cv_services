@@ -95,10 +95,10 @@ export default function Appointment() {
 
   return (
       <div className=" flex justify-center items-center">
-        <div className="bg-white p-6 border-[3px] border-[#355834] rounded-[2rem] shadow-[0_0px_50px_rgba(58,_120,_58,_0.6)] backdrop-blur-xl bg-white/30 max-w-lg w-full h-auto outline-offset-10 m-7">
+        <div className="bg-white p-6 border-[3px] border-[#17158A] rounded-[2rem] shadow-[0_0px_050px_rgba(58,_58,_120,_0.6)] backdrop-blur-xl bg-white/30 max-w-lg w-full h-auto outline-offset-10 m-7">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-semibold text-[#355834] mb-4">{title}</h1>
-            <p className="text-lg text-[#97C2AC]">{description}</p>
+            <h1 className="text-4xl font-semibold text-[#17158A] mb-4">{title}</h1>
+            <p className="text-lg text-[#aaaaff]">{description}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -107,7 +107,7 @@ export default function Appointment() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="bg-white border-[1.5px] border-[#97C2AC] rounded-full px-4 py-3 focus:ring-2 focus:border-[#97C2AC]/80 transition-all duration-300 ease-in-out"
+                className="bg-white border-[1.5px] border-[#aaaaff] rounded-full px-4 py-3 focus:ring-2 focus:border-[#aaaaff]/80 transition-all duration-300 ease-in-out"
             />
 
             <Input
@@ -115,7 +115,7 @@ export default function Appointment() {
                 value={prenom}
                 onChange={(e) => setPrenom(e.target.value)}
                 required
-                className="bg-white border-[1.5px] border-[#97C2AC] rounded-full px-4 py-3 focus:ring-2 focus:border-[#97C2AC]/80 transition-all duration-300 ease-in-out"
+                className="bg-white border-[1.5px] border-[#aaaaff] rounded-full px-4 py-3 focus:ring-2 focus:border-[#aaaaff]/80 transition-all duration-300 ease-in-out"
             />
 
             <Input
@@ -124,7 +124,7 @@ export default function Appointment() {
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-white border-[1.5px] border-[#97C2AC] rounded-full px-4 py-3 focus:ring-2 focus:border-[#97C2AC]/80 transition-all duration-300 ease-in-out"
+                className="bg-white border-[1.5px] border-[#aaaaff] rounded-full px-4 py-3 focus:ring-2 focus:border-[#aaaaff]/80 transition-all duration-300 ease-in-out"
             />
 
             <Input
@@ -132,7 +132,7 @@ export default function Appointment() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                className="bg-white border-[1.5px] border-[#97C2AC] rounded-full px-4 py-3 focus:ring-2 focus:border-[#97C2AC]/80 transition-all duration-300 ease-in-out"
+                className="bg-white border-[1.5px] border-[#aaaaff] rounded-full px-4 py-3 focus:ring-2 focus:border-[#aaaaff]/80 transition-all duration-300 ease-in-out"
             />
 
             <Input
@@ -140,12 +140,12 @@ export default function Appointment() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
-                className="bg-white border-[1.5px] border-[#97C2AC] rounded-full px-4 py-3 focus:ring-2 focus:border-[#97C2AC]/80 transition-all duration-300 ease-in-out"
+                className="bg-white border-[1.5px] border-[#aaaaff] rounded-full px-4 py-3 focus:ring-2 focus:border-[#aaaaff]/80 transition-all duration-300 ease-in-out"
             />
 
             <Button
                 type="submit"
-                className="bg-[#355834] hover:bg-[#97C2AC]/90 text-white w-full py-3 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[#97C2AC]/50"
+                className="bg-[#17158A] hover:bg-[#aaaaff]/90 text-white w-full py-3 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[#aaaaff]/50"
             >
               {submitButton} <Send className="ml-2 h-4 w-4" />
             </Button>

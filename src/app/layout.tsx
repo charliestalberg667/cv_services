@@ -16,7 +16,7 @@ const montserratAlternates = Montserrat({
 });
 
 export const metadata = {
-  title: "SolarInstall",
+  title: "cv services",
   description:
       "Installation de systèmes solaires | Installatie van zonne-energiesystemen",
   keywords:
