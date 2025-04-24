@@ -181,7 +181,7 @@ function HomeMobile({ content }: { content: Content }) {
 
   return (
     <div id="content-section" className="container mx-auto px-4">
-      <div className="grid gap-32 pb-5">
+      <div className="grid gap-16 pb-5">
         {/* First Image with Filter and Text */}
         <div className="relative h-[300px] rounded-lg overflow-hidden">
         <Image
