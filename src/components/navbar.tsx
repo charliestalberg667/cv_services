@@ -51,7 +51,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Image
-                src="/images/logoblack.png"
+                src="/images/logo.png"
                 alt="Logo"
                 width={30}
                 height={30}
