@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const resend = new Resend("re_Ttnx3zUd_HuRsu9HFsdMyWbTWkt2FgvyH");
+    const resend = new Resend("re_Ttnx3zUd_HuRsu9HFsdMyWbTWkt2FgvyH");Solarstock458
 
     const mailOptions = {
       from: "cv services Contact <onboarding@resend.dev>",

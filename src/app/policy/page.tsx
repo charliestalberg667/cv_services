@@ -71,7 +71,7 @@ export default function Industrial() {
         },
         {
           title: "Droits des Utilisateurs",
-          text: `Vous avez le droit d'accéder à vos données personnelles, de les corriger, de demander leur suppression ou de limiter leur traitement. Pour exercer ces droits, veuillez nous contacter à l'adresse e-mail suivante : spl@solarstock.be.`,
+          text: `Vous avez le droit d'accéder à vos données personnelles, de les corriger, de demander leur suppression ou de limiter leur traitement. Pour exercer ces droits, veuillez nous contacter à l'adresse e-mail suivante : info@cvservices.be.`,
         },
         {
           title: "Sécurité des Données",
@@ -96,7 +96,7 @@ export default function Industrial() {
         },
         {
           title: "Rechten van Gebruikers",
-          text: `U heeft het recht om uw persoonlijke gegevens in te zien, te corrigeren, te laten verwijderen of de verwerking ervan te beperken. Om deze rechten uit te oefenen, kunt u contact met ons opnemen via het volgende e-mailadres: spl@solarstock.be.`,
+          text: `U heeft het recht om uw persoonlijke gegevens in te zien, te corrigeren, te laten verwijderen of de verwerking ervan te beperken. Om deze rechten uit te oefenen, kunt u contact met ons opnemen via het volgende e-mailadres: info@cvservices.be.`,
         },
         {
           title: "Gegevensbeveiliging",
