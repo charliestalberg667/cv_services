@@ -16,16 +16,16 @@ export async function POST(req: NextRequest) {
         }
 
         // Initialize Resend with your API key
-        const resend = new Resend("re_GaCag4pC_FshoGwwsnWbro7eXNFMY3Gun");
+        const resend = new Resend("re_Ttnx3zUd_HuRsu9HFsdMyWbTWkt2FgvyH");
 
         // Define email options
         const mailOptions = {
-            from: 'SolarInstall Contact <onboarding@resend.dev>',
-            to: 'spl@solarstock.be',
+            from: 'cv services Contact <onboarding@resend.dev>',
+            to: 'info@cvservices.be',
             reply_to: email,
-            subject: `SolarInstall Appointment Request (${name})`,
+            subject: `cv services Appointment Request (${name})`,
             text: `
-SolarInstall Appointment Request
+cv services Appointment Request
 
 Name: ${name}
 Prenom: ${prenom}
@@ -34,7 +34,7 @@ Phone: ${phone}
 Address: ${address}
       `,
             html: `
-<h2>SolarInstall Appointment Request</h2>
+<h2>cv services Appointment Request</h2>
 <p><strong>Name:</strong> ${name}</p>
 <p><strong>Prenom:</strong> ${prenom}</p>
 <p><strong>Email:</strong> ${email}</p>

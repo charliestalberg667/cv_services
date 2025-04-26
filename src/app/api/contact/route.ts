@@ -12,15 +12,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const resend = new Resend("re_GaCag4pC_FshoGwwsnWbro7eXNFMY3Gun");
+    const resend = new Resend("re_Ttnx3zUd_HuRsu9HFsdMyWbTWkt2FgvyH");
 
     const mailOptions = {
-      from: "SolarInstall Contact <onboarding@resend.dev>",
+      from: "cv services Contact <onboarding@resend.dev>",
       //to: process.env.BUSINESS_EMAIL as string,
-      to: "spl@solarstok.be",
+      to: "info@cvservices.be",
       reply_to: email,
-      subject: `SolarInstall Contact (${name}, ${email})`,
-      text: `SolarInstall Contact (${name}, ${email})\nMESSAGE UNDERNEATH THIS LINE\n-------------------------------------\n\n${message}`,
+      subject: `cv services Contact (${name}, ${email})`,
+      text: `cv services Contact (${name}, ${email})\nMESSAGE UNDERNEATH THIS LINE\n-------------------------------------\n\n${message}`,
     };
 
     const { error } = await resend.emails.send(mailOptions);
