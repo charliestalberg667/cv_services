@@ -46,6 +46,14 @@ export default function RootLayout({
             gtag('config', 'G-LN7BET84BQ');
           `}
         </Script>
+        {/* Organization Schema Markup for Logo */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "CV-Service",
+          "url": "https://www.cv-service.be",
+          "logo": "https://www.cv-service.be/images/logo.png"
+        }) }} />
       </head>
       <body className={`${inter.className} ${montserratAlternates.variable}`}>
       <LanguageProvider>
