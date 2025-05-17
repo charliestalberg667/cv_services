@@ -1,4 +1,3 @@
-
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -21,12 +20,19 @@ interface Card {
   video?: string;
   gif?: string;
   youtube?: string;
+  features?: Feature[];
 }
 
 interface CTA {
   title: string;
   description: string;
   button: string;
+}
+
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
 }
 
 function ResidentialDesktop({ content }: { content: Content }) {
@@ -39,133 +45,58 @@ function ResidentialDesktop({ content }: { content: Content }) {
         <p className="text-xl text-[#5350fa]">{subtitle}</p>
       </div>
 
-      <div className="grid gap-8 pb-5">
+      <div className="grid gap-16 pb-5">
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`grid md:grid-cols-2 items-center shadow-[0_5px_12px_rgba(0,_0,_0,_0.05)] bg-white  rounded-lg ${
-              index % 2 === 0 ? "md:grid-flow-col" : "md:grid-flow-col-dense"
-            }`}
+            className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-[0_8px_30px_rgba(0,_0,_0,_0.08)] overflow-hidden"
           >
-            {index % 2 === 0 ? (
-              <>
-                <div className="relative h-[400px] m-4 rounded-lg overflow-hidden">
-                  {card.youtube ? (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`https://www.youtube.com/embed/${card.youtube}`}
-                      title={card.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                    ></iframe>
-                  ) : card.video ? (
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      className="absolute inset-0 w-full h-full object-cover"
-                    >
-                      <source src={card.video} type="video/mp4" />
-                    </video>
-                  ) : card.gif ? (
-                    <Image
-                      src={card.gif}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                      priority={index === 0}
-                      unoptimized
-                    />
-                  ) : (
-                    <Image
-                      src={card.image || "/public/favicon.png"}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                      priority={index === 0}
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col h-full justify-between md:px-8 py-8 ">
-                  <div>
-                    <h2 className="text-2xl font-bold text-center text-[#17158A]">
-                      {card.title}
-                    </h2>
-                    {card.subtitle && (
-                      <h3 className="text-xl text-center text-[#43964c]">
-                        {card.subtitle}
-                      </h3>
-                    )}
-                  </div>
-                  <p className="text-gray-800 leading-relaxed text-justify">
+            <div className="grid md:grid-cols-12 gap-8">
+              <div className="md:col-span-5 relative h-[400px] md:h-[600px] overflow-hidden">
+                {card.video ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source src={card.video} type="video/mp4" />
+                  </video>
+                ) : (
+                  <Image
+                    src={card.image || "/public/favicon.png"}
+                    alt={card.title}
+                    fill
+                    className="object-cover"
+                    priority={index === 0}
+                  />
+                )}
+              </div>
+              <div className="md:col-span-7 flex flex-col justify-between p-8 md:p-10">
+                <div>
+                  <h2 className="text-3xl font-bold text-[#17158A] mb-6">
+                    {card.title}
+                  </h2>
+                  <p className="text-gray-700 leading-relaxed text-justify mb-8">
                     {card.description}
                   </p>
-                  <div></div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex flex-col h-full justify-between md:px-8 py-8">
-                  <div>
-                    <h2 className="text-2xl font-bold text-center text-[#17158A]">
-                      {card.title}
-                    </h2>
-                    {card.subtitle && (
-                      <h3 className="text-xl text-center text-[#43964c]">
-                        {card.subtitle}
-                      </h3>
-                    )}
-                  </div>
-                  <p className="text-gray-800 leading-relaxed text-justify">
-                    {card.description}
-                  </p>
-                  <div></div>
-                </div>
-                <div className="relative h-[400px] m-4 rounded-lg overflow-hidden">
-                  {card.youtube ? (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`https://www.youtube.com/embed/${card.youtube}`}
-                      title={card.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                    ></iframe>
-                  ) : card.video ? (
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      className="absolute inset-0 w-full h-full object-cover"
-                    >
-                      <source src={card.video} type="video/mp4" />
-                    </video>
-                  ) : card.gif ? (
-                    <Image
-                      src={card.gif}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                      priority={index === 0}
-                      unoptimized
-                    />
-                  ) : (
-                    <Image
-                      src={card.image || "/public/favicon.png"}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                      priority={index === 0}
-                    />
+                  {card.features && (
+                    <div className="grid grid-cols-2 gap-6">
+                      {card.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start space-x-3 bg-white p-4 rounded-xl shadow-sm">
+                          <span className="text-3xl">{feature.icon}</span>
+                          <div>
+                            <h3 className="font-semibold text-[#17158A] mb-1">{feature.title}</h3>
+                            <p className="text-sm text-gray-600">{feature.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </div>
-              </>
-            )}
+              </div>
+            </div>
           </div>
         ))}
         <PowerCTA />
@@ -185,22 +116,11 @@ function ResidentialMobile({ content }: { content: Content }) {
           <p className="text-sm text-[#5350fa]">{subtitle}</p>
         </div>
 
-        <div className="grid gap-8 pb-5">
+        <div className="grid gap-6 pb-5">
           {cards.map((card, index) => (
-            <div key={index} className="grid gap-4 items-center shadow-[0_10px_25px_rgba(0,_0,_0,_0.1)] bg-white rounded-lg">
-              <div className="relative h-[220px] rounded-lg overflow-hidden">
-                {card.youtube ? (
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={`https://www.youtube.com/embed/${card.youtube}`}
-                    title={card.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                  ></iframe>
-                ) : card.video ? (
+            <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-[0_8px_30px_rgba(0,_0,_0,_0.08)] overflow-hidden">
+              <div className="relative h-[400px] overflow-hidden">
+                {card.video ? (
                   <video
                     autoPlay
                     loop
@@ -210,45 +130,36 @@ function ResidentialMobile({ content }: { content: Content }) {
                   >
                     <source src={card.video} type="video/mp4" />
                   </video>
-                ) : card.gif ? (
-                  <>
-                    <Image
-                      src={card.gif}
-                      alt={card.title}
-                      layout="fill"
-                      className="object-cover"
-                      priority={index === 0}
-                      unoptimized
-                    />
-                    <h2 className="text-xl font-bold text-[#17158A] text-center">
-                      {card.title}
-                    </h2>
-                  </>
                 ) : (
-                  <>
-                    <Image
-                      src={card.image || "/public/favicon.png"}
-                      alt={card.title}
-                      layout="fill"
-                      className="object-cover"
-                      priority={index === 0}
-                    />
-                    <h2 className="text-xl font-bold text-[#17158A] text-center">
-                      {card.title}
-                    </h2>
-                  </>
+                  <Image
+                    src={card.image || "/public/favicon.png"}
+                    alt={card.title}
+                    fill
+                    className="object-cover"
+                    priority={index === 0}
+                  />
                 )}
               </div>
-              <div className="flex flex-col h-full justify-between ">
-              <h2 className="text-xl my-4 font-bold text-[#17158A] text-center">
-                      {card.title}
-              </h2>
-                <p className="text-gray-800 mx-4 text-justify leading-relaxed">
+              <div className="p-4">
+                <h2 className="text-xl font-bold text-[#17158A] text-center mb-3">
+                  {card.title}
+                </h2>
+                <p className="text-sm text-gray-700 text-justify leading-relaxed mb-4">
                   {card.shortDescription}
                 </p>
-                <div className="flex mt-4 justify-center">
-                  {/* Additional content could go here */}
-                </div>
+                {card.features && (
+                  <div className="grid grid-cols-1 gap-3">
+                    {card.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start space-x-3 bg-white p-3 rounded-xl shadow-sm">
+                        <span className="text-2xl">{feature.icon}</span>
+                        <div>
+                          <h3 className="font-semibold text-sm text-[#17158A] mb-0.5">{feature.title}</h3>
+                          <p className="text-xs text-gray-600">{feature.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -275,60 +186,136 @@ export default function Residential() {
   const content = {
     fr: {
       title: "Installation Solaire Résidentielle",
-      subtitle: "Transformez  votre maison en source d'énergie propre et économique",
+      subtitle: "Produisez votre propre énergie verte et réduisez vos factures d'électricité",
       cards: [
         {
-          title: "Expertise en Installation Solaire",
-          description: "Notre équipe certifiée optimise l'installation de vos panneaux solaires en effectuant une analyse approfondie de votre toiture. Nous prenons en compte l'orientation, l'inclinaison et la structure de votre toit pour maximiser la production d'énergie. Chaque installation est réalisée en respectant l'esthétique de votre maison, avec une attention particulière à la qualité et à la durabilité. Grâce à nos technologies de pointe et à notre expertise, nous garantissons une performance énergétique optimale et une intégration harmonieuse des panneaux solaires.",
-          shortDescription: "Notre équipe certifiée optimise l'installation de vos panneaux solaires pour maximiser la production d'énergie tout en respectant l'esthétique de votre maison.",
-          image: "/images/examplerooftop.png"
+          title: "Installation Professionnelle",
+          description: "Notre équipe d'experts certifiés réalise une étude complète de votre toiture pour déterminer le meilleur emplacement de vos panneaux solaires. Nous analysons l'orientation, l'inclinaison, les zones d'ombre potentielles et la structure de votre toit pour maximiser votre production d'énergie. L'installation est réalisée dans le respect des normes de sécurité et d'esthétique, avec des panneaux de haute qualité garantissant une performance optimale pendant plus de 25 ans.",
+          shortDescription: "Une installation professionnelle par des experts certifiés, avec une étude complète de votre toiture pour maximiser votre production d'énergie.",
+          image: "/images/solarinstal.jpg",
+          features: [
+            {
+              icon: "🏠",
+              title: "Étude de Toiture",
+              description: "Analyse complète de votre toit pour optimiser l'installation"
+            },
+            {
+              icon: "📊",
+              title: "Simulation de Production",
+              description: "Calcul précis de votre production énergétique annuelle"
+            },
+            {
+              icon: "🔧",
+              title: "Installation Certifiée",
+              description: "Installation par des experts certifiés et qualifiés"
+            },
+            {
+              icon: "📝",
+              title: "Administratif Simplifié",
+              description: "Gestion complète des démarches administratives"
+            }
+          ]
         },
         {
-          title: "Monitoring Intelligent",
-          description: "Grâce à notre système de monitoring intelligent de dernière génération, vous avez un contrôle total sur votre installation. Notre application mobile vous permet de suivre en temps réel la production d'énergie de vos panneaux solaires, votre consommation d'électricité, ainsi que les économies réalisées. Vous pouvez aussi consulter des rapports détaillés sur les performances de votre système et ajuster votre consommation selon vos besoins. De plus, grâce à l'intelligence artificielle, l'application vous envoie des notifications personnalisées et vous aide à optimiser votre autoconsommation pour maximiser vos économies.",
-          shortDescription: "Suivez en temps réel votre production d'énergie, votre consommation et vos économies, avec des notifications personnalisées pour optimiser votre autoconsommation.",
-          video: "/images/videoonduleur.mp4"
-        },
-        {
-          title: "Mobilité Électrique Intelligente",
-          description: "Passez à la mobilité durable avec notre solution de recharge intelligente pour véhicules électriques. Notre borne de recharge connectée s'ajuste automatiquement à la production d'énergie de vos panneaux solaires, vous permettant de recharger votre véhicule aux moments les plus avantageux en termes d'énergie disponible. Vous avez la possibilité de programmer vos sessions de recharge pour éviter les pics de consommation et optimiser les coûts. Notre solution est compatible avec tous les véhicules électriques et offre une recharge rapide et sécurisée, tout en vous permettant de suivre votre consommation énergétique et d'optimiser les coûts grâce à une interface utilisateur intuitive.",
-          shortDescription: "Notre borne de recharge connectée s'ajuste à votre production solaire pour une recharge rapide, économique et compatible avec tous les véhicules électriques.",
-          image: "/images/charger.jpg"
+          title: "Recharge de Véhicule Électrique",
+          description: "Associez votre installation solaire à une borne de recharge pour véhicule électrique. Notre système intelligent synchronise la recharge de votre véhicule avec votre production solaire, vous permettant de rouler à l'énergie solaire. Programmez vos recharges aux heures les plus ensoleillées et optimisez votre autoconsommation. Compatible avec tous les véhicules électriques, notre solution vous offre une mobilité 100% verte et économique.",
+          shortDescription: "Rechargez votre véhicule électrique avec votre énergie solaire grâce à notre borne de recharge intelligente et programmable.",
+          image: "/images/ev-charging.jpg",
+          features: [
+            {
+              icon: "⚡",
+              title: "Recharge Intelligente",
+              description: "Synchronisation automatique avec votre production solaire"
+            },
+            {
+              icon: "📱",
+              title: "Contrôle Mobile",
+              description: "Gérez vos recharges depuis votre smartphone"
+            },
+            {
+              icon: "🚗",
+              title: "Universalité",
+              description: "Compatible avec tous les véhicules électriques"
+            },
+            {
+              icon: "💰",
+              title: "Économies Garanties",
+              description: "Optimisation des coûts de recharge"
+            }
+          ]
         }
       ],
       cta: {
-        title: "Prêt pour l'énergie solaire?",
-        description: "Demandez un devis gratuit et personnalisé dès maintenant. Notre équipe se tient à votre disposition pour vous fournir des conseils adaptés à vos besoins spécifiques et vous aider à faire le meilleur choix pour votre installation solaire.",
-        button: "Demander un Devis"
+        title: "Prêt à passer au solaire ?",
+        description: "Demandez une étude gratuite et personnalisée de votre projet. Nos experts vous accompagnent dans toutes les étapes, de l'étude initiale à la mise en service de votre installation.",
+        button: "Demander une Étude"
       }
     },
     nl: {
-      title: "Residentiële Zonne-installatie", 
-      subtitle: "Transformeer uw huis in een bron van schone en betaalbare energie",
+      title: "Residentiële Zonne-energie",
+      subtitle: "Wees onafhankelijk van het energienet en bespaar op uw elektriciteitsrekening",
       cards: [
         {
-          title: "Expertise in Zonne-installaties",
-          description: "Ons gecertificeerd team analyseert zorgvuldig uw dak om de ideale zonnepaneelinstallatie te garanderen. We houden rekening met de oriëntatie, hellingshoek en structuur van uw dak om de energieproductie te maximaliseren. Tijdens de installatie wordt niet alleen de technische efficiëntie geoptimaliseerd, maar ook de esthetische integratie van de panelen in uw woning. We gebruiken geavanceerde technologieën en onze expertise om ervoor te zorgen dat de zonnepanelen op een duurzame en esthetisch verantwoorde manier worden geïnstalleerd, waardoor ze perfect in de architectuur van uw huis passen.",
-          shortDescription: "Ons gecertificeerd team optimaliseert de zonnepaneelinstallatie om de energieproductie te maximaliseren, met respect voor de architectuur van uw huis.",
-          image: "/images/examplerooftop.png"
+          title: "Professionele Installatie",
+          description: "Ons gecertificeerd team voert een grondige analyse van uw dak uit om de optimale plaatsing van zonnepanelen te bepalen. We onderzoeken de oriëntatie, hellingshoek, mogelijke schaduwzones en dakstructuur om uw energieproductie te maximaliseren. De installatie gebeurt volgens de hoogste veiligheids- en esthetische normen, met hoogwaardige panelen die meer dan 25 jaar optimaal presteren.",
+          shortDescription: "Een professionele installatie door gecertificeerde experts, met een grondige dakanalyse voor maximale energieproductie.",
+          image: "/images/solarinstal.jpg",
+          features: [
+            {
+              icon: "🏠",
+              title: "Dakanalyse",
+              description: "Uitgebreide analyse van uw dak voor optimale installatie"
+            },
+            {
+              icon: "📊",
+              title: "Productiesimulatie",
+              description: "Nauwkeurige berekening van uw jaarlijkse energieproductie"
+            },
+            {
+              icon: "🔧",
+              title: "Gecertificeerde Installatie",
+              description: "Installatie door gecertificeerde en gekwalificeerde experts"
+            },
+            {
+              icon: "📝",
+              title: "Vereenvoudigde Administratie",
+              description: "Volledige afhandeling van administratieve procedures"
+            }
+          ]
         },
         {
-          title: "Intelligente Monitoring",
-          description: "Met ons geavanceerde monitoring systeem heeft u volledige controle over uw zonne-installatie. Via onze app kunt u in real-time de zonne-energieproductie, het elektriciteitsverbruik en de gerealiseerde besparingen volgen. De app biedt gedetailleerde rapporten over de prestaties van uw systeem en helpt u bij het optimaliseren van uw verbruik door middel van kunstmatige intelligentie. U ontvangt gepersonaliseerde meldingen en kunt uw eigen verbruik instellen om maximale besparingen te realiseren, waardoor u zowel uw energieverbruik als de impact op het milieu kunt verbeteren.",
-          shortDescription: "Volg in real-time uw energieproductie, verbruik en besparingen, en optimaliseer uw verbruik dankzij gepersonaliseerde meldingen en AI-algoritmes.",
-          video: "/images/videoonduleur.mp4"
-        },
-        {
-          title: "Slimme Elektrische Mobiliteit",
-          description: "Stap over op duurzame mobiliteit met onze slimme laadoplossingen voor elektrische voertuigen. Onze laadstations passen zich automatisch aan uw zonne-energieproductie aan, zodat u uw voertuig oplaadt wanneer er voldoende energie beschikbaar is. Dit maakt het mogelijk om uw voertuig op een kostenbesparende en energie-efficiënte manier op te laden. Onze oplossingen zijn compatibel met alle elektrische voertuigen en bieden een intuïtieve interface waarmee u oplaadbeurten kunt plannen en uw verbruik kunt volgen, zodat u altijd kunt profiteren van de meest voordelige oplaadtijden.",
-          shortDescription: "Onze slimme laadoplossing past zich automatisch aan uw zonne-energieproductie aan voor een snelle en kostenefficiënte oplading van uw elektrische voertuig.",
-          image: "/images/charger.jpg"
+          title: "Elektrische Voertuig Oplading",
+          description: "Combineer uw zonne-installatie met een laadpaal voor elektrische voertuigen. Ons slimme systeem synchroniseert het opladen van uw voertuig met uw zonneproductie, zodat u kunt rijden op zonne-energie. Plan uw oplaadbeurten tijdens de zonnigste uren en optimaliseer uw zelfverbruik. Compatibel met alle elektrische voertuigen, biedt onze oplossing u 100% groene en voordelige mobiliteit.",
+          shortDescription: "Laad uw elektrische voertuig op met uw zonne-energie via onze slimme en programmeerbare laadpaal.",
+          image: "/images/ev-charging.jpg",
+            features: [
+            {
+              icon: "⚡",
+              title: "Slim Opladen",
+              description: "Automatische synchronisatie met uw zonneproductie"
+            },
+            {
+              icon: "📱",
+              title: "Mobiele Bediening",
+              description: "Beheer uw oplaadsessies via uw smartphone"
+            },
+            {
+              icon: "🚗",
+              title: "Universaliteit",
+              description: "Compatibel met alle elektrische voertuigen"
+            },
+            {
+              icon: "💰",
+              title: "Gegarandeerde Besparingen",
+              description: "Optimalisatie van oplaadkosten"
+            }
+          ]
         }
       ],
       cta: {
         title: "Klaar voor zonne-energie?",
-        description: "Vraag nu een gratis en persoonlijke offerte aan. Onze experts staan voor u klaar om u te helpen met het kiezen van de beste zonne-installatie voor uw situatie.",
-        button: "Contacteer ons"
+        description: "Vraag een gratis en persoonlijke studie van uw project aan. Onze experts begeleiden u door alle stappen, van de initiële studie tot de ingebruikname van uw installatie.",
+        button: "Vraag een Studie"
       }
     }    
   };    

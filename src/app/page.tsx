@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/language-provider";
-import { FaSun, FaUsers, FaAward, FaLeaf } from "react-icons/fa"; // Import icons from react-icons
+import { FaSun, FaUsers, FaAward, FaLeaf, FaMapMarkerAlt } from "react-icons/fa"; // Import icons from react-icons
 
 interface Content {
   cta: string;
@@ -12,6 +12,7 @@ interface Content {
   values: string;
   intro: string;
   valuesItem: ValueItem[]; // Corrected to match the data structure
+  city: string; // Add city to the interface
 }
 
 interface ValueItem {
@@ -31,145 +32,160 @@ interface Card {
 }
 
 function HomeDesktop({ content }: { content: Content }) {
-  const { cards, cta, title, values, valuesItem, intro } = content;
+  const { cards, cta, title, values, valuesItem, intro, city } = content;
   return (
-    <div id="content-section" className="relative min-h-screen">
+    <div id="content-section" className="relative min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Content */}
       <div className="relative z-10">
-        <div className=" grid gap-20 mx-7 bg-white p-4 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)]">
+        <div className="grid gap-20 mx-7 bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-[0_0px_25px_rgba(0,_0,_0,_0.05)]">
           {/* First Image with Filter and Text */}
-          <div className="relative h-[800px] rounded-lg overflow-hidden">
+          <div className="relative h-[800px] rounded-2xl overflow-hidden group">
             <Image
               src={"/images/fond.jpg"}
               alt={"fond"}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               priority
               loading="eager"
             />
-            {/* Overlay Filter */}
-            <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+            {/* Modern Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
             {/* Text on Top */}
             <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
-              <h1 className="text-8xl mb-4">{title}</h1>
-              <h3 className="text-2xl">{intro}</h3>
+              <h1 className="text-8xl mb-6 font-bold tracking-tight animate-fade-in">{title}</h1>
+              <h3 className="text-2xl max-w-2xl opacity-90 animate-fade-in-delay">{intro}</h3>
+            </div>
+            {/* City Name */}
+            <div className="absolute bottom-8 right-8 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
+              <FaMapMarkerAlt className="text-white w-5 h-5" />
+              <p className="text-white text-lg font-medium">{city}</p>
             </div>
           </div>
 
           {/* Values Section */}
-          <h2 className="text-4xl font-semibold text-center">{values}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {valuesItem.map((item, index) => (
-    <div
-      key={index}
-      className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center transition-transform hover:shadow-[0_0px_55px_rgba(0,_0,_100,_0.2)]"
-    >
-      <item.icon className="w-12 h-12 mx-auto mb-4 text-[#17158A]" /> {/* Render the icon */}
-      <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-      <p>{item.description}</p>
-    </div>
-  ))}
-</div>
+          <div className="space-y-12">
+            <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-[#17158A] to-[#2a28b3] bg-clip-text text-transparent">{values}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {valuesItem.map((item, index) => (
+                <div
+                  key={index}
+                  className="group p-8 bg-white rounded-2xl shadow-[0_0px_25px_rgba(0,_0,_0,_0.05)] text-center transition-all duration-300 hover:shadow-[0_0px_55px_rgba(0,_0,_100,_0.1)] hover:-translate-y-1"
+                >
+                  <div className="bg-[#17158A]/5 p-4 rounded-full w-16 h-16 mx-auto mb-6 group-hover:bg-[#17158A]/10 transition-colors duration-300">
+                    <item.icon className="w-8 h-8 mx-auto text-[#17158A]" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Cards Section */}
-        </div>
-        <div className="grid gap-20 mx-7 bg-white p-4 rounded-lg shadow-[0_10px_25px_rgba(0,_0,_0,_0.1)] my-8">
-         {cards.map((card, index) => (
-            <div
-              key={index}
-              className={`grid md:grid-cols-2 gap-4 items-center ${
-                index % 2 === 0 ? "md:grid-flow-col" : "md:grid-flow-col-dense"
-              }`}
-            >
-              {index % 2 === 0 ? (
-                <>
-                  <Link href={card.link}>
-                    <div className="relative h-[400px] rounded-lg overflow-hidden">
-                      {card.image && (
-                        <Image
-                          src={card.image}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                          loading={index === 0 ? "eager" : "lazy"}
-                        />
-                      )}
-                    </div>
-                  </Link>
-                  <div className="flex flex-col h-full justify-between md:px-4 py-8">
-                    <h2 className="text-3xl font-bold text-center text-[#17158A]">
-                      {card.title}
-                    </h2>
-                    <p className="text-gray-700 leading-relaxed text-justify">
-                      {card.description}
-                    </p>
-                    <Link href={card.link}>
-                      <button
-                        type="submit"
-                        className="border-2 border-[#17158A] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
-                      >
-                        {cta}
-                        <svg
-                          className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full p-2 rotate-45"
-                          viewBox="0 0 16 19"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
-                            className="fill-gray-800 group-hover:fill-gray-800"
-                          ></path>
-                        </svg>
-                      </button>
+          <div className="grid gap-20">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className={`grid md:grid-cols-2 gap-8 items-center ${
+                  index % 2 === 0 ? "md:grid-flow-col" : "md:grid-flow-col-dense"
+                }`}
+              >
+                {index % 2 === 0 ? (
+                  <>
+                    <Link href={card.link} className="group">
+                      <div className="relative h-[500px] rounded-2xl overflow-hidden">
+                        {card.image && (
+                          <Image
+                            src={card.image}
+                            alt={card.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            priority={index === 0}
+                            loading={index === 0 ? "eager" : "lazy"}
+                          />
+                        )}
+                      </div>
                     </Link>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex flex-col h-full justify-between md:px-4 py-8">
-                    <h2 className="text-3xl font-bold text-center text-[#17158A]">
-                      {card.title}
-                    </h2>
-                    <p className="text-gray-700 leading-relaxed text-justify">
-                      {card.description}
-                    </p>
-                    <Link href={card.link}>
-                      <button
-                        type="submit"
-                        className="border-2 border-[#17158A] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
-                      >
-                        {cta}
-                        <svg
-                          className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full p-2 rotate-45"
-                          viewBox="0 0 16 19"
-                          xmlns="http://www.w3.org/2000/svg"
+                    <div className="flex flex-col h-full justify-between md:px-8 py-8">
+                      <h2 className="text-4xl font-bold text-[#17158A] mb-6">
+                        {card.title}
+                      </h2>
+                      <p className="text-gray-700 leading-relaxed text-lg mb-8">
+                        {card.description}
+                      </p>
+                      <Link href={card.link}>
+                        <button
+                          type="submit"
+                          className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 ease-out bg-[#17158A] rounded-xl hover:bg-[#2a28b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#17158A]"
                         >
-                          <path
-                            d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
-                            className="fill-gray-800 group-hover:fill-gray-800"
-                          ></path>
-                        </svg>
-                      </button>
-                    </Link>
-                  </div>
-                  <Link href={card.link}>
-                    <div className="relative h-[400px] rounded-lg overflow-hidden">
-                      {card.image && (
-                        <Image
-                          src={card.image}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                          loading={index === 0 ? "eager" : "lazy"}
-                        />
-                      )}
+                          <span className="mr-2">{cta}</span>
+                          <svg
+                            className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </button>
+                      </Link>
                     </div>
-                  </Link>
-                </>
-              )}
-            </div>
-          ))}
+                  </>
+                ) : (
+                  <>
+                    <div className="flex flex-col h-full justify-between md:px-8 py-8">
+                      <h2 className="text-4xl font-bold text-[#17158A] mb-6">
+                        {card.title}
+                      </h2>
+                      <p className="text-gray-700 leading-relaxed text-lg mb-8">
+                        {card.description}
+                      </p>
+                      <Link href={card.link}>
+                        <button
+                          type="submit"
+                          className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 ease-out bg-[#17158A] rounded-xl hover:bg-[#2a28b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#17158A]"
+                        >
+                          <span className="mr-2">{cta}</span>
+                          <svg
+                            className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </button>
+                      </Link>
+                    </div>
+                    <Link href={card.link} className="group">
+                      <div className="relative h-[500px] rounded-2xl overflow-hidden">
+                        {card.image && (
+                          <Image
+                            src={card.image}
+                            alt={card.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            priority={index === 0}
+                            loading={index === 0 ? "eager" : "lazy"}
+                          />
+                        )}
+                      </div>
+                    </Link>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -177,52 +193,60 @@ function HomeDesktop({ content }: { content: Content }) {
 }
 
 function HomeMobile({ content }: { content: Content }) {
-  const { cards, cta, title, values, valuesItem } = content;
+  const { cards, cta, title, values, valuesItem, intro, city } = content;
 
   return (
-    <div id="content-section" className="container mx-auto px-4">
+    <div id="content-section" className="container mx-auto px-4 bg-gradient-to-b from-gray-50 to-white">
       <div className="grid gap-16 pb-5">
         {/* First Image with Filter and Text */}
-        <div className="relative h-[300px] rounded-lg overflow-hidden">
-        <Image
-  src="/images/fond.jpg"
-  alt="fond"
-  fill
-  className="object-cover"
-  priority
-  loading="eager"
-  sizes="(max-width: 768px) 100vw, 50vw"
-/>
-          {/* Overlay Filter */}
-          <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div className="relative h-[400px] rounded-2xl overflow-hidden">
+          <Image
+            src="/images/fond.jpg"
+            alt="fond"
+            fill
+            className="object-cover"
+            priority
+            loading="eager"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          {/* Modern Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
           {/* Text on Top */}
-          
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
-            <h1 className="text-4xl mb-4">{title}</h1>
+            <h1 className="text-4xl font-bold mb-4 tracking-tight">{title}</h1>
+            <p className="text-lg opacity-90">{intro}</p>
+          </div>
+          {/* City Name */}
+          <div className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 flex items-center gap-2">
+            <FaMapMarkerAlt className="text-white w-4 h-4" />
+            <p className="text-white text-base font-medium">{city}</p>
           </div>
         </div>
 
         {/* Values Section */}
-        <div>
-        <h2 className="text-3xl font-semibold text-center mb-6">{values}</h2>
-        <div className="grid grid-cols-2 gap-4"> {/* Grille 2x2 */}
-          {valuesItem.map((item, index) => (
-            <div
-              key={index}
-              className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-[0_0px_25px_rgba(0,_0,_0,_0.1)] text-center"
-            >
-              <item.icon className="w-10 h-10 mx-auto mb-2 text-[#17158A]" /> {/* Taille réduite des icônes */}
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-sm">{item.description}</p> {/* Texte plus petit */}
-            </div>
-          ))}
-        </div></div>
+        <div className="space-y-8">
+          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-[#17158A] to-[#2a28b3] bg-clip-text text-transparent">{values}</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {valuesItem.map((item, index) => (
+              <div
+                key={index}
+                className="p-6 bg-white rounded-2xl shadow-[0_0px_25px_rgba(0,_0,_0,_0.05)] text-center"
+              >
+                <div className="bg-[#17158A]/5 p-3 rounded-full w-12 h-12 mx-auto mb-4">
+                  <item.icon className="w-6 h-6 mx-auto text-[#17158A]" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Cards Section */}
         {cards.map((card, index) => (
-          <div key={index} className="grid gap-4 items-center mb-16">
+          <div key={index} className="grid gap-6 items-center mb-16">
             <Link href={card.link}>
-              <div className="relative h-[300px] rounded-lg overflow-hidden">
+              <div className="relative h-[300px] rounded-2xl overflow-hidden">
                 {card.image && (
                   <Image
                     src={card.image}
@@ -235,28 +259,31 @@ function HomeMobile({ content }: { content: Content }) {
                 )}
               </div>
             </Link>
-            <div className="flex flex-col h-full gap-8 justify-between md:px-4 py-4">
-              <h2 className="text-3xl font-bold text-center text-[#17158A]">
+            <div className="flex flex-col h-full gap-6 justify-between px-4 py-4">
+              <h2 className="text-3xl font-bold text-[#17158A]">
                 {card.title}
               </h2>
-              <p className="text-gray-700 text-center leading-relaxed">
+              <p className="text-gray-700 text-lg">
                 {card.shortDescription}
               </p>
               <Link href={card.link}>
                 <button
                   type="submit"
-                  className="border-2 border-[#17158A] p-4 flex justify-center gap-2 items-center mx-auto text-lg bg-gray backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#17158A] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-spacing-1 rounded-xl group"
+                  className="group relative inline-flex items-center justify-center px-6 py-3 font-bold text-white transition-all duration-300 ease-out bg-[#17158A] rounded-xl hover:bg-[#2a28b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#17158A] w-full"
                 >
-                  {cta}
+                  <span className="mr-2">{cta}</span>
                   <svg
-                    className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full p-2 rotate-45"
-                    viewBox="0 0 16 19"
-                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
                     <path
-                      d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
-                      className="fill-gray-800 group-hover:fill-gray-800"
-                    ></path>
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
                   </svg>
                 </button>
               </Link>
@@ -283,7 +310,8 @@ export default function Home() {
   const content = {
     fr: {
       title: "Libérez la puissance du soleil",
-      intro: "avec cv services, nous rendons l’énergie solaire accessible à tous",
+      intro: "avec cv services, nous rendons l'énergie solaire accessible à tous",
+      city: "Halle",
       cards: [
         {
           title: "Solutions solaires pour votre domicile",
@@ -327,6 +355,7 @@ export default function Home() {
     nl: {
       title: "Ontketen de kracht van de zon met cv services",
       intro: "met cv services maken we zonne-energie toegankelijk voor iedereen",
+      city: "Halle",
       cards: [
         {
           title: "Zonne-oplossingen voor thuis",
