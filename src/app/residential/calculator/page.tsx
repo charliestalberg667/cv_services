@@ -202,7 +202,7 @@ export default function SolarCalculator() {
                 {currentContent.results.totalCost}
               </h3>
               <p className="text-3xl font-bold text-[#5350fa]">
-                {totalCost.toLocaleString()} {currentContent.results.currency}
+                {totalCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} {currentContent.results.currency}
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function SolarCalculator() {
                 {currentContent.results.yearlyProduction}
               </h3>
               <p className="text-3xl font-bold text-[#5350fa]">
-                {Math.round(yearlyProduction).toLocaleString()} {currentContent.results.kwh}
+                {Math.round(yearlyProduction).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} {currentContent.results.kwh}
               </p>
             </div>
 
@@ -220,7 +220,7 @@ export default function SolarCalculator() {
                 {currentContent.results.yearlySavings}
               </h3>
               <p className="text-3xl font-bold text-[#5350fa]">
-                {Math.round(yearlySavings).toLocaleString()} {currentContent.results.currency}
+                {Math.round(yearlySavings).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} {currentContent.results.currency}
               </p>
             </div>
 
@@ -238,7 +238,7 @@ export default function SolarCalculator() {
                 {currentContent.results.environmentalImpact}
               </h3>
               <p className="text-3xl font-bold text-[#5350fa]">
-                {Math.round(co2Reduction).toLocaleString()} kg {currentContent.results.co2Reduction}
+                {Math.round(co2Reduction).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} kg {currentContent.results.co2Reduction}
               </p>
             </div>
           </div>
